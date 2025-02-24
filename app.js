@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 const indexRouter = require('./api/rounts/index');
-const productRouter = require('./api/rounts/products');
+const productRouter = require('./api/rounts/product/products');
 const status_orderRouter = require('./api/rounts/status');
 const productTypeRouter = require('./api/rounts/product_type');
 
