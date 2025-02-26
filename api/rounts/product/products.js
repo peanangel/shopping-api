@@ -288,30 +288,27 @@ router.delete('/:cid', (req, res) => {
 });
 
 
-// router.delete('/:uid', (req, res) => {
-//     let id = req.params.uid;
+router.delete('/cart/clear/:uid', (req, res) => {
+    let id = req.params.uid;
 
-//     // Validate ID
-//     if (!id || isNaN(id)) {
-//         return res.status(400).json({ error: 'Invalid ID' });
-//     }
+  
 
-//     let sql = "DELETE FROM `carts` WHERE uid = ?";
-//     sql = mysql.format(sql, [id]);
+    let sql = "DELETE FROM `carts` WHERE uid = ?";
+    sql = mysql.format(sql, [id]);
 
-//     pool.query(sql, (error, results) => {
-//         if (error) {
-//             console.error("Database Error:", error);
-//             return res.status(500).json({ error: 'Internal Server Error', details: error.message });
-//         }
+    pool.query(sql, (error, results) => {
+        if (error) {
+            console.error("Database Error:", error);
+            return res.status(500).json({ error: 'Internal Server Error', details: error.message });
+        }
 
-//         if (results.affectedRows === 1) {
-//             return res.status(200).json({ message: 'Delete success', id: id });
-//         } else {
-//             return res.status(404).json({ error: 'Item not found', id: id });
-//         }
-//     });
-// });
+        if (results.affectedRows >= 1) {
+            return res.status(200).json({ message: 'Delete success', id: id });
+        } else {
+            return res.status(404).json({ error: 'Item not found', id: id });
+        }
+    });
+});
 
 
 
